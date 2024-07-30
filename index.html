@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Executive Advisor & Consultant | Roberto Iriondo</title>
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"></noscript>
+    <link rel="preload" href="https://www.robertoiriondo.com/assets/images/hero.jpg" as="image">
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="https://www.robertoiriondo.com/assets/images/hero.jpg">
+    <link rel="icon" type="image/png" sizes="64x64" href="https://www.robertoiriondo.com/assets/images/hero.jpg">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#6b7583">
+    <style>
+        body {
+            max-width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            color: #ffffff;
+            text-align: center;
+            font-family: roboto,sans-serif;
+            background-color: #6b7583; /* Fallback for older browsers */
+            background-image: radial-gradient(at center center, #6b7583 0%, #4a5361 50%, #2e3a48 75%, #162027 100%);
+            background-attachment: fixed; /* Ensures the background is fixed during scrolling */
+            background-position: center center; /* Center the background */
+            background-repeat: no-repeat; /* Do not repeat the background */
+            background-size: 100% 100%; /* Stretch the background to cover the entire body */
+            min-height: 100vh; /* Minimum height to cover the full viewport height */
+            overflow-y: scroll;
+        }
+        h1, h2, h3 {
+          font-weight: 700;
+        }
+        h1 {
+          font-size: 24px;
+        }
+        h2 {
+          font-size: 20px;
+        }
+        h3 {
+          font-size: 16px;
+        }
+        a {
+          color: #fff;
+        }
+        .container {
+          max-width: 580px;
+          padding: 32px 16px 32px 16px;
+        }
+        img.profile {
+            width: 96px;
+            border-radius: 50%;
+            margin: 20px;
+            border: 0px solid white;
+        }
+        .link-container {
+            /* width: 300px; */
+        }
+        .link-container a {
+          border: 2px solid #fff;
+          border-radius: 20px;
+          margin-bottom: 16px;
+        }
+        .link, .button {
+            display: block;
+            margin: 10px 0;
+            padding: 10px 20px;
+            background-color: #6b7583;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            border: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .link:hover, .button:hover,
+        .link:focus, .button:focus,
+        .link:active, .button:active {
+            background-color: #fff;
+            color: #222;
+        }
+
+        /* Top Bar */
+        .top-bar-fixed {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background-color: rgba(255, 255, 255, 0.5);
+            transition: background-color 150ms, -webkit-transform 150ms, -webkit-backdrop-filter 150ms;
+            backdrop-filter: blur(10px);
+            color: #fff;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 1000; /* Make sure it's above other content */
+        }
+        .top-bar-image {
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .top-bar-image img {
+            width: 40px;
+        }
+        .top-left-buttons, .top-right-buttons {
+            cursor: pointer;
+        }
+        /* /Top Bar */
+
+        .top-right-buttons, .top-left-buttons {
+            position: fixed;
+            top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #222;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #fff;
+        }
+        .top-right-buttons {
+            border-radius: 20px;
+            right: 20px;
+            width: 120px;
+            height: 40px;
+        }
+        .top-right-buttons .button {
+            display: flex;
+            background: #fff;
+            color: #222;
+            border-radius: 20px;
+        }
+        .top-left-buttons {
+            left: 20px;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+        .top-right-buttons i {
+          margin-right: 10px;
+        }
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            margin: 5px;
+            color: #ffffff;
+            font-size: 24px;
+            border-radius: 50%;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .social-icons a:hover, .top-right-buttons a:hover,
+        .social-icons a:focus, .top-right-buttons a:focus,
+        .social-icons a:active, .top-right-buttons a:active {
+            background-color: #fff;
+            color: #222;
+        }
+        #shareMenu {
+            display: none;
+            position: fixed;
+            left: 20px;
+            top: 80px;
+            background-color: #fff;
+            color: #222;
+            padding: 20px;
+            border-radius: 20px;
+            text-align: left;
+            line-height: 2;
+        }
+        #shareMenu a {
+            font-weight: 500;
+            color: #222;
+            text-decoration: none;
+            display: block;
+            margin: 5px 0;
+        }
+        #shareMenu i {
+            margin-right: 5px;
+        }
+        .oculto {
+          display: none;
+        }
+
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        .modal-content {
+            background-color: #6b7583;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            border-radius: 20px;
+            width: 80%; /* Could be more or less, depending on screen size */
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .iframe-container {
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        #loadingOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #6b7583; /* Fallback for older browsers */
+            background-image: radial-gradient(at center center, #6b7583 0%, #4a5361 50%, #2e3a48 75%, #162027 100%);
+            background-attachment: fixed; /* Ensures the background is fixed during scrolling */
+            background-position: center center; /* Center the background */
+            background-repeat: no-repeat; /* Do not repeat the background */
+            background-size: 100% 100%; /* Stretch the background to cover the entire body */
+            min-height: 100vh; /* Minimum height to cover the full viewport height */
+            z-index: 2000; /* Higher than other content */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #loadingOverlay i {
+             color: #fff;
+             font-size: 36px;
+             animation: spin 1s linear infinite;
+         }
+
+         @keyframes spin {
+             0% { transform: rotate(0deg); }
+             100% { transform: rotate(360deg); }
+         }
+         .fork-button {
+              display: inline-block;
+              padding: 10px 20px;
+              margin-bottom: 40px;
+              background-color: #24292e; /* GitHub's button color */
+              color: #fff;
+              text-decoration: none;
+              border-radius: 20px;
+              font-size: 14px;
+              font-weight: bold;
+              transition: background-color 0.3s, color 0.3s;
+              text-align: center;
+              animation: jump 3s ease-in-out infinite;
+          }
+          .fork-button i {
+              margin-right: 8px;
+          }
+          .fork-button:hover,
+          .fork-button:focus,
+          .fork-button:active {
+              background-color: #6b7583;
+              color: #ffffff;
+              animation: jump 0.5s ease-in-out;
+          }
+
+          @keyframes jump {
+              0%, 20%, 100% {
+                  transform: translateY(20px);
+              }
+              10% {
+                  transform: translateY(-20px);
+              }
+          }
+          .copyright {
+            font-size: 12px;
+          }
+          </style>
+</head>
+<body>
+    <div id="loadingOverlay">
+        <i class="fas fa-spinner"></i>
+    </div>
+    <header>
+      <div class="top-bar">
+        <div class="top-left-buttons" onclick="toggleShareMenu()">
+            <i class="fas fa-share-alt"></i>
+        </div>
+
+        <div class="top-right-buttons">
+            <a href="#" id="subscribeButton" class="button"><i class="fas fa-bell"></i> Subscribe</a>
+        </div>
+      </div>
+
+      <div class="top-bar-fixed">
+        <div class="top-left-buttons" onclick="toggleShareMenu()">
+            <i class="fas fa-share-alt"></i>
+        </div>
+
+        <div class="top-bar-image">
+          <img src="https://www.robertoiriondo.com/assets/images/hero.jpg" alt="Roberto Iriondo portrayed" class="profile">
+        </div>
+
+        <div class="top-right-buttons">
+            <a href="#" id="subscribeButton" class="button"><i class="fas fa-bell"></i> Subscribe</a>
+        </div>
+      </div>
+
+      <!-- Subscribe Modal -->
+      <div id="subscribeModal" class="modal">
+          <div class="modal-content">
+              <span class="close">&times;</span>
+              <h2>Subscribe to Our Newsletter</h2>
+              <div id="iframeContainer" class="iframe-container"></div>
+          </div>
+      </div>
+    </header>
+
+    <div id="shareMenu">
+        <a target="_blank" rel="noopener" href="#" onclick="navigator.clipboard.writeText('https://towardsai.net/roberto');alert('Link copied to clipboard!');" title="Copy Link"><i class="fas fa-link"></i> Copy URL</a>
+        <a target="_blank" rel="noopener" href="https://www.facebook.com/sharer/sharer.php?u=https://towardsai.net/roberto" title="Share on Facebook"><i class="fab fa-facebook-f"></i> Facebook</a>
+        <a target="_blank" rel="noopener" href="https://www.linkedin.com/sharing/share-offsite/?url=https://towardsai.net/roberto" title="Share on LinkedIn"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+        <a target="_blank" rel="noopener" href="https://api.whatsapp.com/send?text=https://towardsai.net/roberto" title="Share on WhatsApp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        <a target="_blank" rel="noopener" href="http://m.me/?link=https://towardsai.net/roberto" title="Share via Messenger"><i class="fab fa-facebook-messenger"></i> Messenger</a>
+        <a href="mailto:?subject=Check%20this%20out&body=I%20thought%20you%20might%20like%20this:%20https://towardsai.net/roberto" title="Share via Email"><i class="fas fa-envelope"></i> Email</a>
+    </div>
+
+    <div class="container">
+      <img src="https://www.robertoiriondo.com/assets/images/hero.jpg" alt="Roberto Iriondo portrayed" class="profile">
+      <h1>Roberto Iriondo</h1>
+      <h2>AI Executive Advisor and Consultant</h2>
+      <h3>Helping AI companies with marketing, web strategy, content and growth.</h3>
+      <p>Let's connect: <a href="mailto:hello@robertoiriondo.com">hello@robertoiriondo.com</a></p>
+
+      <div class="social-icons">
+          <a target="_blank" rel="noopener" href="https://www.robertoiriondo.com/" title="Roberto Iriondo's website"><i class="fa fa-globe"></i></a>
+          <a href="mailto:hello@robertoiriondo.com" title="Email"><i class="fa fa-envelope"></i></a>
+          <a target="_blank" rel="noopener" href="https://twitter.com/robiriondo" title="Twitter"><i class="fab fa-twitter"></i></a>
+          <a target="_blank" rel="noopener" href="https://linkedin.com/in/robiriondo" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a target="_blank" rel="noopener" href="https://github.com/robiriondo" title="Github"><i class="fab fa-github"></i></a>
+      </div>
+
+      <div class="link-container">
+          <h3>Book a personal advising session </h3>
+          <a target="_blank" rel="noopener" href="https://calendly.com/roberto-iriondo/30min" class="link" role="button">30-minute 1-on-1</a>
+          <a target="_blank" rel="noopener" href="https://calendly.com/roberto-iriondo/60min" class="link" role="button">60-minute 1-on-1</a>
+          <!--
+          <h3>AI courses and products</h3>
+          <a target="_blank" rel="noopener" href="#" class="link" role="button">AI courses and products</a>
+          -->
+          <h3>Book recommendations</h3>
+          <a target="_blank" rel="noopener" href="https://amzn.to/3LMKRQ8" class="link" role="button">Building LLMs for Production</a>
+          <a target="_blank" rel="noopener" href="https://amzn.to/4fnBsMi" class="link" role="button">Building LLM Powered Applications</a>
+          <a target="_blank" rel="noopener" href="https://amzn.to/4fqZXZ6" class="link" role="button">Prompt Engineering for Generative AI</a>
+          <a target="_blank" rel="noopener" href="https://amzn.to/3WsfnDv" class="link" role="button">Generative AI on AWS</a>
+      </div>
+    </div>
+
+    <a href="https://github.com/robiriondo/linktree-linknest" target="_blank" rel="noopener" class="fork-button">
+      <i class="fab fa-github"></i> Fork this project on GitHub
+    </a>
+
+    <footer>
+      <p class="copyright">
+        © <span id="current-year"></span> Roberto Iriondo
+      </p>
+    </footer>
+
+    <script>
+        function toggleShareMenu() {
+            var menu = document.getElementById('shareMenu');
+            if (menu.style.display === 'none' || menu.style.display === '') {
+                menu.style.display = 'block';
+            } else {
+                menu.style.display = 'none';
+            }
+        }
+
+        window.addEventListener('scroll', function() {
+            var topBar = document.querySelector('.top-bar-fixed');
+            if (window.pageYOffset > 100) { // Adjust as necessary for when the bar should appear
+                topBar.style.display = 'flex';
+            } else {
+                topBar.style.display = 'none';
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+          var modal = document.getElementById("subscribeModal");
+          var buttons = document.querySelectorAll(".top-right-buttons .button");
+          var span = document.getElementsByClassName("close")[0];
+          var iframeLoaded = false; // Flag to check if iframe is already loaded
+
+          buttons.forEach(function(btn) {
+              btn.addEventListener('click', function(event) {
+                  event.preventDefault(); // Prevent the default action of the anchor tag
+                  modal.style.display = "block";
+                  if (!iframeLoaded) {
+                      // Create the iframe element
+                      var iframe = document.createElement('iframe');
+                      iframe.src = "https://robiriondo.substack.com/embed";
+                      iframe.width = "340";
+                      iframe.height = "150";
+                      iframe.style.border = "1px solid #EEE";
+                      iframe.style.background = "white";
+                      iframe.frameBorder = "0";
+                      iframe.scrolling = "no";
+
+                      // Append the iframe to its container
+                      document.getElementById('iframeContainer').appendChild(iframe);
+                      iframeLoaded = true; // Set the flag to true after loading the iframe
+                  }
+              });
+          });
+
+          span.onclick = function() {
+              modal.style.display = "none";
+          }
+
+          window.onclick = function(event) {
+              if (event.target == modal) {
+                  modal.style.display = "none";
+              }
+          }
+      });
+
+      var startTime = new Date().getTime();
+
+      window.addEventListener('load', function() {
+          var endTime = new Date().getTime();
+          var loadTime = endTime - startTime;
+          var minLoadTime = 125; // Minimum load time in milliseconds
+
+          if (loadTime < minLoadTime) {
+              setTimeout(function() {
+                  document.getElementById('loadingOverlay').style.display = 'none';
+              }, minLoadTime - loadTime);
+          } else {
+              document.getElementById('loadingOverlay').style.display = 'none';
+          }
+      });
+
+      document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+
+</body>
+</html>
