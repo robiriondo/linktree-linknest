@@ -1,6 +1,6 @@
 {
-  "name": "AI Executive Advisor & Consultant | Roberto Iriondo",
-  "short_name": "Roberto Iriondo",
+  "name": "Stay tuned with Roberto Iriondo",
+  "short_name": "Stay tuned with Roberto Iriondo",
   "description": "Roberto Iriondo is an AI Executive Advisor & Consultant helping AI companies with marketing, web strategy, content and growth.",
   "start_url": "/",
   "display": "standalone",
@@ -15,6 +15,11 @@
     {
       "src": "https://www.robertoiriondo.com/assets/images/hero.jpg",
       "sizes": "64x64",
+      "type": "image/png"
+    },
+    {
+      "src": "https://www.robertoiriondo.com/assets/images/hero.jpg",
+      "sizes": "512x512",
       "type": "image/png"
     }
   ]
