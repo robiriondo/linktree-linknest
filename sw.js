@@ -3,8 +3,7 @@ self.addEventListener('install', event => {
     caches.open('pwa-cache').then(cache => {
       return cache.addAll([
         '/',
-        '/index.html',
-        'https://www.robertoiriondo.com/assets/images/hero.jpg',
+        '/index.html', 
         '/manifest.json'
       ]);
     })
